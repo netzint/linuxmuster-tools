@@ -2,39 +2,30 @@ import subprocess
 import xml.etree.ElementTree as ElementTree
 from concurrent import futures
 
-from ..lmnfile import LMNFile
+from .devices import Devices
+
 
 class UPChecker:
     def __init__(self, school='default-school'):
-        self.school = school
-        if self.school != 'default-school':
-            prefix = f'{self.school}.'
-        else:
-            prefix = ''
+        self.devicesmgr = Devices()
+        self.devices = self.devicesmgr.clients
 
-        devices_path = f'/etc/linuxmuster/sophomorix/{self.school}/{prefix}devices.csv'
-        self.devices = []
+    def checkhost(self, hostname):
+        to_check = self.devicesmgr.get_client(hostname)
 
-        valid_computer_roles = [
-            'classroom-teachercomputer',
-            'classroom-studentcomputer',
-            'faculty-teachercomputer',
-            'staffcomputer',
-            'thinclient',
-            'iponly',
-        ]
+        if to_check:
+            return self.test_online(to_check)
+        return {}
 
-        with LMNFile(devices_path, 'r') as devices_csv:
-            for device in devices_csv.read():
-                if device['sophomorixRole'] in valid_computer_roles:
-                    self.devices.append(device)
+    def check(self, groups=[]):
+        to_check = self.devicesmgr.get_clients(groups=groups)
 
-        self.check()
-
-    def check(self):
-        self.results = {}
+        results = {}
         with futures.ThreadPoolExecutor() as executor:
-            infos = executor.map(self.test_online, self.devices)
+            for result in executor.map(self.test_online, to_check):
+                ip = list(result.keys())[0]
+                results[ip] = result[ip]
+        return results
 
     def test_online(self, device):
         """
@@ -52,7 +43,7 @@ class UPChecker:
 
         numberOfOnlineHosts = int(xmlRoot.find("runstats").find("hosts").attrib["up"])
         if numberOfOnlineHosts == 0:
-            return "Off"
+            return {device['ip']: "Off"}
 
         ports = {}
         scannedPorts = xmlRoot.find("host").find("ports").findall("port")
@@ -69,11 +60,9 @@ class UPChecker:
         if numberOfFilteredPorts == 3:
             # All ports filtered, no answer from the host,
             # likely because the host is down and the firewall doesn't respond.
-            return "No response"
+            return {device['ip']: "No response"}
 
-        up = self.get_os_from_ports(ports)
-        self.results[device['ip']] =  up
-        print(device['ip'], up)
+        return {device['ip']: self.get_os_from_ports(ports)}
 
     def get_os_from_ports(self, ports):
         """

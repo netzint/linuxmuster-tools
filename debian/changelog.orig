@@ -1,18 +1,10 @@
-linuxmuster-tools7 (17.2.8) lmn72-testing; urgency=medium
-
-  * Add devices manager
-  * Add Upchecker to check if clients are online
-  * [ldapreader] Allow hyphen and underscore in schoolclasses names 
-
- -- Lukas Spitznagel <lukas.spitznagel@netzint.de>  Thu, 26 Oct 2023 10:30:56 +0200
-
-
+<<<<<<< HEAD
 linuxmuster-tools7 (17.2.7) lmn72-testing; urgency=low
 
   * Merge from lmn and update
 
  -- Lukas Spitznagel <lukas.spitznagel@netzint.de>  Thu, 26 Oct 2023 10:30:56 +0200
- 
+=======
 linuxmuster-tools7 (7.2.8) lmn72; urgency=medium
 
   * Add devices manager
@@ -28,6 +20,7 @@ linuxmuster-tools7 (7.2.7) lmn72; urgency=medium
   * [samba] Parser for smbstatus   
 
  -- Arnaud Kientz <arnaud@linuxmuster.net>  Thu, 26 Oct 2023 10:25:41 +0200
+>>>>>>> linuxmuster.net/main
 
 linuxmuster-tools7 (7.2.6) lmn72; urgency=medium
 
