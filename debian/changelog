@@ -1,3 +1,9 @@
+linuxmuster-tools7 (17.2.15) lmn72-testing; urgency=medium
+
+  * Merge new changes from linuxmuster.net
+
+ -- Lukas Spitznagel <lukas.spitznagel@netzint.de>  Thu, 26 Oct 2023 10:30:56 +0200
+
 linuxmuster-tools7 (17.2.8) lmn72-testing; urgency=medium
 
   * Add devices manager
@@ -13,6 +19,55 @@ linuxmuster-tools7 (17.2.7) lmn72-testing; urgency=low
 
  -- Lukas Spitznagel <lukas.spitznagel@netzint.de>  Thu, 26 Oct 2023 10:30:56 +0200
  
+linuxmuster-tools7 (7.2.15) lmn72; urgency=medium
+
+  * [ldapreader] Search with first and last names.
+  * [quota] List user files and directories sizes
+  * [samba] Add samba constants like SAMBA_WORKGROUP.
+  * [samba] Fix library conflict.
+
+ -- Arnaud Kientz <arnaud@linuxmuster.net>  Mon, 01 Jan 2024 21:57:48 +0100
+
+linuxmuster-tools7 (7.2.14) lmn72; urgency=medium
+
+  * [samba] Fix undefined gpos var. 
+
+ -- Arnaud Kientz <arnaud@linuxmuster.net>  Tue, 19 Dec 2023 16:09:34 +0100
+
+linuxmuster-tools7 (7.2.13) lmn72; urgency=medium
+
+  * [linbo] Read qdiff date properly. 
+
+ -- Arnaud Kientz <arnaud@linuxmuster.net>  Fri, 08 Dec 2023 10:00:28 +0100
+
+linuxmuster-tools7 (7.2.12) lmn72; urgency=medium
+
+  * [devices] Llist rooms and groups
+  * [ldapreader] Add exam informations
+  * [ldapreader] Speed up requests with attributes
+  * [linbo] Add last sync informations
+ 
+ -- Arnaud Kientz <arnaud@linuxmuster.net>  Sun, 26 Nov 2023 16:13:22 +0100
+
+linuxmuster-tools7 (7.2.11) lmn72; urgency=medium
+
+  * [dns] Add DNS manager
+  * [ldapreader] Create empty object on empty response 
+
+ -- Arnaud Kientz <arnaud@linuxmuster.net>  Tue, 21 Nov 2023 18:37:04 +0100
+
+linuxmuster-tools7 (7.2.10) lmn72; urgency=medium
+
+  * Allow uppercases in projects names 
+
+ -- Arnaud Kientz <arnaud@linuxmuster.net>  Sun, 19 Nov 2023 18:36:27 +0100
+
+linuxmuster-tools7 (7.2.9) lmn72; urgency=medium
+
+  * Better error message
+
+ -- Arnaud Kientz <arnaud@linuxmuster.net>  Sun, 19 Nov 2023 15:11:29 +0100
+
 linuxmuster-tools7 (7.2.8) lmn72; urgency=medium
 
   * Add devices manager

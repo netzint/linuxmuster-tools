@@ -14,10 +14,8 @@ try:
     lp = LoadParm()
     creds = Credentials()
     creds.guess(lp)
-except ImportError:
-    logging.error("Samba doesn't seem to be installed, this module can not be used.")
-
-gpos_infos = {}
+except ImportError as e:
+    logging.error(f"Samba doesn't seem to be installed, this module can not be used: {str(e)}")
 
 SAMDB_PATH = '/var/lib/samba/private/sam.ldb'
 
@@ -36,6 +34,9 @@ class GPOManager:
     """
 
     def __init__(self):
+
+        gpos_infos = {}
+
         if os.path.isfile(SAMDB_PATH):
             try:
                 samdb = SamDB(url=SAMDB_PATH, session_info=system_session(),credentials=creds, lp=lp)
